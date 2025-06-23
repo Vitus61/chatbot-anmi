@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Mia Pagina con Chatbot ANMI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .chatbot-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .chatbot-frame {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .chat-button {
+            background: #667eea;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .chat-button:hover {
+            background: #5a6fd8;
+        }
+        .floating-chat {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: none;
+        }
+        .toggle-chat {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #667eea;
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1001;
+        }
+        .toggle-chat:hover {
+            background: #5a6fd8;
+        }
+        @media (max-width: 768px) {
+            .floating-chat {
+                width: 90%;
+                height: 70%;
+                right: 5%;
+                bottom: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏛️ Regolamento ANMI</h1>
+            <p>Assistente virtuale per informazioni sui regolamenti del Consiglio Direttivo</p>
+        </div>
+        
+        <div class="content">
+            <h2>📋 Informazioni Generali</h2>
+            <p>Benvenuto nella pagina dedicata al regolamento ANMI. Qui puoi consultare tutte le informazioni necessarie attraverso il nostro assistente virtuale.</p>
+            
+            <h3>🤖 Come utilizzare il chatbot:</h3>
+            <ul>
+                <li><strong>Metodo 1:</strong> Usa il pulsante floating in basso a destra</li>
+                <li><strong>Metodo 2:</strong> Interagisci direttamente nella sezione dedicata qui sotto</li>
+                <li><strong>Metodo 3:</strong> Apri il chatbot in una nuova finestra</li>
+            </ul>
+            
+            <p><strong>Esempi di domande:</strong></p>
+            <ul>
+                <li>"Chi nomina il segretario di gruppo?"</li>
+                <li>"Quali sono le competenze del Consiglio Direttivo?"</li>
+                <li>"Come vengono prese le decisioni?"</li>
+            </ul>
+        </div>
+
+        <div class="chatbot-section">
+            <h2>💬 Chatbot ANMI</h2>
+            <p>Interagisci direttamente con l'assistente virtuale:</p>
+            
+            <!-- Chatbot incorporato -->
+            <iframe 
+                class="chatbot-frame"
+                src="https://cdn.botpress.cloud/webchat/v3.0/shareable.html?configUrl=https://files.bpcontent.cloud/2025/06/23/12/20250623121133-NAXLLU2L.json"
+                title="Chatbot ANMI">
+            </iframe>
+            
+            <div style="margin-top: 15px;">
+                <a href="https://cdn.botpress.cloud/webchat/v3.0/shareable.html?configUrl=https://files.bpcontent.cloud/2025/06/23/12/20250623121133-NAXLLU2L.json" 
+                   target="_blank" 
+                   class="chat-button">
+                    🔗 Apri chatbot in nuova finestra
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot floating -->
+    <button class="toggle-chat" onclick="toggleFloatingChat()" title="Apri/Chiudi Chat">
+        💬
+    </button>
+    
+    <iframe 
+        id="floating-chat"
+        class="floating-chat"
+        src="https://cdn.botpress.cloud/webchat/v3.0/shareable.html?configUrl=https://files.bpcontent.cloud/2025/06/23/12/20250623121133-NAXLLU2L.json"
+        title="Chatbot ANMI Floating">
+    </iframe>
+
+    <script>
+        function toggleFloatingChat() {
+            const chat = document.getElementById('floating-chat');
+            if (chat.style.display === 'none' || chat.style.display === '') {
+                chat.style.display = 'block';
+            } else {
+                chat.style.display = 'none';
+            }
+        }
+        
+        // Chiudi il chat floating se si clicca fuori
+        document.addEventListener('click', function(event) {
+            const chat = document.getElementById('floating-chat');
+            const button = document.querySelector('.toggle-chat');
+            
+            if (!chat.contains(event.target) && !button.contains(event.target)) {
+                if (chat.style.display === 'block') {
+                    chat.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
